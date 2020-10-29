@@ -34,6 +34,7 @@ def func(x):
 
     wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write(str(i)+"\n"+ str(x)+"\n")
+    wdata.close()
 
 
     '''
@@ -50,7 +51,10 @@ def func(x):
     slab.center(vacuum=15.0, axis=2)
     #view(slab)
     write('geometry1.in',slab,format='aims')
+
+    wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write("aims finished\n")
+    wdata.close()
 
 
     '''
@@ -62,7 +66,9 @@ def func(x):
         outfile.write(line.replace(' O\n', ' O\n\t constrain_relaxation .true.\n'))
     infile.close()
     outfile.close()
+    wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write("geometry.in finished\n")
+    wdata.close()
 
 
     '''
@@ -72,11 +78,11 @@ def func(x):
     os.system("./calc.sh")
 
     wdata = open("data.txt", "a",encoding='utf-8')
-    wdata.write("calc.sh finished\n")
+    wdata.write("calc.sh finished\n=====================================\n\n")
+    wdata.close()
     efinf = open('energy.out',"r",encoding='utf-8')
     E = float(efinf.readline())
     efinf.close()
-    wdata.close()
     os.system("rm -f energy.out")
 
     return E
