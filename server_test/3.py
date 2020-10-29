@@ -5,7 +5,7 @@ from boss.bo.bo_main import BOMain
 
 def func(X):
     x = X[0,:]
-    print(x)
+    #print(x)
     f=x[0]*x[0]+x[1]*x[1]+x[2]*x[2]
     return f
 
