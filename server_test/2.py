@@ -8,6 +8,7 @@ from ase.build import fcc100, add_adsorbate, bulk, fcc111, fcc110
 from ase.visualize import view
 import os
 
+os.system("rm -f geometry1.in")
 
 atoms = Atoms('CCOHHHHHH',positions=[[-2.389565,0,-0.025097],[-1.12958,0,0.830453],[0,0,0],[-3.2863,0,0.634172],[-2.401584,-0.909258,-0.666871],[-2.401596,0.90881,-0.667506],[-1.117561,0.909258,1.472227],[-1.117549,0.90881,1.472862],[0.754514,0,0.563979]])
 slab = fcc110('Al', a=4.041, size=(3,3,4))
