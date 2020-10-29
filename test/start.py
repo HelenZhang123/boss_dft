@@ -12,6 +12,7 @@ python 3.8.5
 import numpy as np
 from boss.bo.bo_main import BOMain
 from user_func import func
+import os
 
 
 bounds = np.array([[3.0,6.0],[3.0,6.0],[1.0,3.0]])
@@ -19,6 +20,7 @@ bounds = np.array([[3.0,6.0],[3.0,6.0],[1.0,3.0]])
 istart = open("i.txt", "w+",encoding='utf-8')
 istart.write("0")
 istart.close()
+os.system("mkdir data")
 
 
 bo = BOMain(

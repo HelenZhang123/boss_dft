@@ -3,6 +3,7 @@
 outfile="energy.out"
 
 rm -f geometry1.in
+mkdir calc_folder
 mv geometry.in calc_folder/geometry.in
 cp control.in calc_folder/control.in
 
@@ -16,3 +17,5 @@ E=($(grep 'Total energy correct' output.out  | awk '{ print  $6 }' |tail -n 1))
 echo $E > $outfile
 cp $outfile ../$outfile
 cd ..
+
+mv calc_folder data/$i

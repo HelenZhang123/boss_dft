@@ -68,6 +68,7 @@ def func(x):
     '''
     交由bush脚本提交作业并在out文件中提取能量
     '''
+    os.environ['i'] = str(i)
     os.system("./calc.sh")
 
     wdata = open("data.txt", "a",encoding='utf-8')
@@ -75,15 +76,7 @@ def func(x):
     efinf = open('energy.out',"r",encoding='utf-8')
     E = float(efinf.readline())
     efinf.close()
-
-    '''
-    将计算文件移入data
-    '''
-    os.environ['i'] = str(i)
-    os.system("./clean.sh")
-    wdata.write("clean.sh finished\n  E="+str(E)+"\n====================================\n\n")
     wdata.close()
-
-
+    os.system("rm -f energy.out")
 
     return E
