@@ -1,0 +1,10 @@
+# input file for alanine 2D (d4-d13)
+
+# optimization
+userfn       user_func.py
+bounds       3.0 6.0; 3.0 6.0; 3.0 6.0
+kernel       stdp
+yrange       -10 10
+initpts      5
+iterpts      20
+verbosity    2

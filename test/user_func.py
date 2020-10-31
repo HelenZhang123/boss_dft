@@ -19,7 +19,6 @@ import os
 
 
 def f(x):
-    os.system("mkdir data")
     '''
     从文件读取计数"i"
     '''

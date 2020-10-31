@@ -18,8 +18,7 @@ from ase.visualize import view
 import os
 
 
-def func(x):
-
+def f(x):
     '''
     从文件读取计数"i"
     '''
