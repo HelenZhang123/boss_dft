@@ -4,7 +4,7 @@ outfile="energy.out"
 
 rm -f geometry1.in
 mkdir calc_folder
-mkdir data
+mkdir -p data
 mv geometry.in calc_folder/geometry.in
 cp control.in calc_folder/control.in
 
