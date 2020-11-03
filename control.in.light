@@ -23,7 +23,7 @@
   #
   #  For relaxation:
   #
-#    relax_geometry bfgs 5.e-3
+    relax_geometry bfgs 5.e-3
 #    relax_unit_cell full
   #
   #  Output options (examples):
