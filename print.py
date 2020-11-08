@@ -8,7 +8,7 @@ from ase.build import fcc100, add_adsorbate, bulk, fcc111, fcc110
 from ase.visualize import view
 import os
 
-X=[5.4253315149E+00,5.2031571641E+00,3.6440891188E+00]
+X=[3,3,3]
 #print(X)
 
 

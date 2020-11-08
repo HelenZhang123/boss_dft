@@ -2,29 +2,6 @@ import numpy as np
 import math as m
 
 
-def cart2sph(x,y,z):
-    XsqPlusYsq = x**2 + y**2
-    r = m.sqrt(XsqPlusYsq + z**2)
-    if r==0:
-        theta0 = 0.0
-    else:
-        theta0 = m.degrees(m.acos(z/r))
-
-    if x==0:
-        phi0 = 90.0
-    else:
-        phi0 = m.degrees(m.atan(y/x))
-    return(r, theta0, phi0)
-
-
-
-def sph2cart(r,theta0,phi0):
-    x = r * m.sin(m.radians(theta0)) * m.cos(m.radians(phi0))
-    y = r * m.sin(m.radians(theta0)) * m.sin(m.radians(phi0))
-    z = r * m.cos(m.radians(theta0))
-    return(x,y,z)
-
-
 def readxyz(filename):
     xyzf = open(filename, 'r')
     xyzarr = np.zeros([1, 3])
@@ -190,7 +167,7 @@ def write_xyz(atomnames, rconnect, rlist, aconnect, alist, dconnect, dlist):
     #print('INSERT TITLE CARD HERE')
     xyzw = open("xyz.xyz","a")
     xyzw.write(str(npart)+"\n")
-    xyzw.write("INSERT TITLE CARD HERE\n")
+    xyzw.write("INSERT\n")
     xyzw.close()
 
     xyzarr = np.zeros([npart, 3])
@@ -246,27 +223,11 @@ def write_xyz(atomnames, rconnect, rlist, aconnect, alist, dconnect, dlist):
         new_y = c[1] - bc[1] * x + ncbc[1] * y + nv[1] * z
         new_z = c[2] - bc[2] * x + ncbc[2] * y + nv[2] * z
         xyzarr[n] = [new_x, new_y, new_z]
-    '''
-    xyzw = open("xyz.xyz","a")
 
+
+    xyzw = open("xyz.xyz","w")
     for i in range(npart):
-        #print('{:<4s}\t{:>11.5f}\t{:>11.5f}\t{:>11.5f}'.format(atomnames[i], xyzarr[i][0], xyzarr[i][1], xyzarr[i][2]))
+        #print(str(atomnames[i])+"\t"+xyzarr[i][0]+"\t"+xyzarr[i][1]+"\t"+xyzarr[i][2]+"\n")
         xyzw.write(str(atomnames[i])+"\t"+str(xyzarr[i][0])+"\t"+str(xyzarr[i][1])+"\t"+str(xyzarr[i][2])+"\n")
     xyzw.close()
-    '''
 
-    angle = open("angle.txt","r")
-    theta0 = int(angle.readline())
-    phi0 = int(angle.readline())
-    #print(theta0)
-    #print(phi0)
-    angle.close()
-
-    xyzw = open("xyz.xyz","a")
-    for i in range(npart):
-        (rr,tt,pp) = cart2sph(xyzarr[i][0],xyzarr[i][1],xyzarr[i][2])
-        (xx,yy,zz) = sph2cart(rr,tt+theta0,pp+phi0)
-        #print('{}\t{}\t{}\t{}'.format(atomnames[i], xx,yy,zz))
-        xyzw.write(str(atomnames[i])+"\t"+str(xx)+"\t"+str(yy)+"\t"+str(zz)+"\n")
-
-    xyzw.close()

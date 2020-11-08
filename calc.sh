@@ -7,11 +7,13 @@ mkdir calc_folder
 mkdir -p data
 mv geometry.in calc_folder/geometry.in
 cp control.in calc_folder/control.in
+mv xyz.xyz calc_folder/xyz.xyz
 
 cd calc_folder
 ulimit -s unlimited
-module load FHI-aims/latest-OpenMPI-intel-2020.0-scalapack
-srun aims.200821.scalapack.mpi.x &> output.out
+mpirun -n 12 aims | tee output.out
+#module load FHI-aims/latest-OpenMPI-intel-2020.0-scalapack
+#srun aims.200821.scalapack.mpi.x &> output.out
 #cp ../testdata.out output.out
 
 E=($(grep 'Total energy correct' output.out  | awk '{ print  $6 }' |tail -n 1))
