@@ -103,7 +103,7 @@ def f(x):
     write('geometry1.in',slab,format='aims')
 
     wdata = open("data.txt", "a",encoding='utf-8')
-    wdata.write("aims finished\n")
+    wdata.write("ase finished\n")
     wdata.close()
 
 
