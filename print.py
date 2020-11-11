@@ -7,21 +7,12 @@ from ase.calculators.aims import Aims
 from ase.build import fcc100, add_adsorbate, bulk, fcc111, fcc110
 from ase.visualize import view
 import os
+import math
 
-X=[3,3,3,90,0,0]
+X=[8,4,2,60,90,180]
 #print(X)
 
 
-import numpy as np
-from ase.io import read,write
-from ase import Atoms
-from ase.constraints import FixAtoms
-from ase.build import surface
-from ase.calculators.aims import Aims
-from ase.build import fcc100, add_adsorbate, bulk, fcc111, fcc110
-from ase.visualize import view
-import os
-import math
 
 def rotate_z_axis(x,y,z,radio_z):
     new_x = x*math.cos(math.radians(radio_z))-y*math.sin(math.radians(radio_z))
@@ -74,6 +65,7 @@ def f(X):
             posi[ii][2] = z3
             ii = ii+1
     xyz.close()
+    #print(posi)
 
     '''
     基于boss的请求，由ase生成晶体
@@ -88,9 +80,8 @@ def f(X):
     #view(slab)
     write('geometry.in',slab,format='aims')
 
-    wdata = open("data.txt", "a",encoding='utf-8')
-    wdata.write("ase finished\n")
-    wdata.close()
+
+os.system("VESTA geometry.in")
 
 if __name__ == '__main__':
     f(X)
