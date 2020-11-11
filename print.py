@@ -9,7 +9,7 @@ from ase.visualize import view
 import os
 import math
 
-X=[8,4,2,60,90,180]
+X=[6,3,2,90,-30,90]
 #print(X)
 
 
@@ -81,7 +81,7 @@ def f(X):
     write('geometry.in',slab,format='aims')
 
 
-os.system("VESTA geometry.in")
+#os.system("VESTA geometry.in")
 
 if __name__ == '__main__':
     f(X)
