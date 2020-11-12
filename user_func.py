@@ -97,7 +97,7 @@ def f(x):
     slab = fcc110('Al', a=4.041, size=(3,3,4))
     constraint_l = FixAtoms(indices=[atom.index for atom in slab if atom.index < 3*3*1])
     slab.set_constraint(constraint_l)
-    add_adsorbate(slab,atoms,X[2],position=(X[0],X[1]),mol_index = 2)
+    add_adsorbate(slab,atoms,X[2],position=(X[0],X[1]),mol_index = 0)
     slab.center(vacuum=15.0, axis=2)
     #view(slab)
     write('geometry1.in',slab,format='aims')
@@ -131,8 +131,14 @@ def f(x):
     wdata.write("calc.sh finished\n=====================================\n\n")
     wdata.close()
     efinf = open('energy.out',"r",encoding='utf-8')
-    E = float(efinf.readline())
+    if os.path.getsize("energy.out")<3:
+        E = 0
+    else:
+        E = float(efinf.readline())
+
     efinf.close()
+
+
     os.system("rm -f energy.out")
 
     return E

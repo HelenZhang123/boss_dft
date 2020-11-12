@@ -9,7 +9,7 @@ from ase.visualize import view
 import os
 import math
 
-X=[6,3,2,90,-30,90]
+X=[0,0,1,90,-30,90]
 #print(X)
 
 
@@ -75,7 +75,7 @@ def f(X):
     slab = fcc110('Al', a=4.041, size=(3,3,4))
     constraint_l = FixAtoms(indices=[atom.index for atom in slab if atom.index < 3*3*1])
     slab.set_constraint(constraint_l)
-    add_adsorbate(slab,atoms,X[2],position=(X[0],X[1]),mol_index = 2)
+    add_adsorbate(slab,atoms,X[2],position=(X[0],X[1]),mol_index = 0)
     slab.center(vacuum=15.0, axis=2)
     #view(slab)
     write('geometry.in',slab,format='aims')
