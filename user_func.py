@@ -51,11 +51,11 @@ def f(x):
     icount.close()
     iplus = open("i.txt", "w",encoding='utf-8')
     i=i+1
-    iplus.write(str(i))
+    iplus.write(str(i).zfill(5))
     iplus.close()
 
     wdata = open("data.txt", "a",encoding='utf-8')
-    wdata.write(str(i)+"\n"+ str(x)+"\n")
+    wdata.write(str(i).zfill(5)+"\n"+ str(x)+"\n")
     wdata.close()
 
 
@@ -124,7 +124,7 @@ def f(x):
     '''
     交由bush脚本提交作业并在out文件中提取能量
     '''
-    os.environ['i'] = str(i)
+    os.environ['i'] = str(i).zfill(5)
     os.system("./calc.sh")
 
     wdata = open("data.txt", "a",encoding='utf-8')
