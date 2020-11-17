@@ -132,7 +132,7 @@ def f(x):
     wdata.close()
     efinf = open('energy.out',"r",encoding='utf-8')
     if os.path.getsize("energy.out")<3:
-        E = 0
+        E = -241600
     else:
         E = float(efinf.readline())
 
