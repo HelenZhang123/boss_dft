@@ -123,7 +123,7 @@ def g(X,i):
         efinf.close()
         os.system("rm -f energy.out")
         os.system("rm -rf data/$i")
-        g(X,i)
+        E=g(X,i)
     else:
         E = float(efinf.readline())
         efinf.close()
