@@ -2,7 +2,7 @@
 
 # optimization
 userfn       user_func.py
-bounds       0.0 13.0; 0.0 8.5; 1.0 3.0; -90.0 270.0; -210.0 150.0; -90.0 270.0
+bounds       4.041 8.082; 2.85742 5.71484; 1.0 3.0; -90.0 270.0; -210.0 150.0; -90.0 270.0
 kernel       rbf rbf rbf stdp stdp stdp
 yrange       -250000 -240000
 initpts      5

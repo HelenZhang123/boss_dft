@@ -13,6 +13,7 @@
 ulimit -s unlimited
 
 source ~/.bashrc
+OMP_NUM_THREADS=1
 
 module load ASE/3.15.0-foss-2017b-Python-3.6.3
 module load Python/3.6.3-foss-2017b

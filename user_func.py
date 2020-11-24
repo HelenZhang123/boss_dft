@@ -41,27 +41,14 @@ def rotate_y_axis(x,y,z,radio_y):
 
 
 
-def f(x):
-    '''
-    从文件读取计数"i"
-    '''
+def g(X,i):
 
-    icount = open("i.txt", "r",encoding='utf-8')
-    i=int(icount.readline())
-    icount.close()
-    iplus = open("i.txt", "w",encoding='utf-8')
-    i=i+1
-    iplus.write(str(i).zfill(5))
-    iplus.close()
 
     wdata = open("data.txt", "a",encoding='utf-8')
-    wdata.write(str(i).zfill(5)+"\n"+ str(x)+"\n")
+    wdata.write(str(i).zfill(5)+"\n"+ str(X)+"\n")
     wdata.close()
 
 
-    #print(i)
-    X=x[0,:]
-    #print(X)
 
     os.system("python3 gc.py -zmat zmat.zmat")
 
@@ -100,7 +87,7 @@ def f(x):
     add_adsorbate(slab,atoms,X[2],position=(X[0],X[1]),mol_index = 0)
     slab.center(vacuum=15.0, axis=2)
     #view(slab)
-    write('geometry1.in',slab,format='aims')
+    write('geometry.in',slab,format='aims')
 
     wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write("ase finished\n")
@@ -109,7 +96,7 @@ def f(x):
 
     '''
     固定乙醇的O原子
-    '''
+
     infile = open("geometry1.in", "r",encoding='utf-8')
     outfile = open("geometry.in", "w",encoding='utf-8')
     for line in infile:
@@ -119,6 +106,7 @@ def f(x):
     wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write("geometry.in finished\n")
     wdata.close()
+    '''
 
 
     '''
@@ -132,13 +120,34 @@ def f(x):
     wdata.close()
     efinf = open('energy.out',"r",encoding='utf-8')
     if os.path.getsize("energy.out")<3:
-        E = -241615
+        efinf.close()
+        os.system("rm -f energy.out")
+        os.system("rm -rf data/$i")
+        g(X,i)
     else:
         E = float(efinf.readline())
-
-    efinf.close()
-
+        efinf.close()
 
     os.system("rm -f energy.out")
 
     return E
+
+
+def f(x):
+    '''
+    从文件读取计数"i"
+    '''
+
+    icount = open("i.txt", "r",encoding='utf-8')
+    i=int(icount.readline())
+    icount.close()
+    iplus = open("i.txt", "w",encoding='utf-8')
+    i=i+1
+    iplus.write(str(i).zfill(5))
+    iplus.close()
+
+    X=x[0,:]
+    E=g(X,i)
+
+    return E
+

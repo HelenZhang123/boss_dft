@@ -12,7 +12,6 @@ mv xyz.xyz calc_folder/xyz.xyz
 cd calc_folder
 ulimit -s unlimited
 #mpirun -n 12 aims | tee output.out
-module load FHI-aims/latest-OpenMPI-intel-2020.0-scalapack
 srun aims.200821.scalapack.mpi.x &> output.out
 #cp ../testdata.out output.out
 
