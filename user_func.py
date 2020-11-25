@@ -118,17 +118,36 @@ def g(X,i):
     wdata = open("data.txt", "a",encoding='utf-8')
     wdata.write("calc.sh finished\n=====================================\n\n")
     wdata.close()
+
+    fresult = open('output.out',"r",encoding='utf-8')
+    findres = 0
+    for ifresult in fresult.readlines():
+        if "Have a nice day." in ifresult:
+            findres = findres +1
+        elif "too close to each other!" in ifresult :
+            findres = findres -1
+        else:
+            findres = findres 
+    fresult.close()
+    
+
     efinf = open('energy.out',"r",encoding='utf-8')
-    if os.path.getsize("energy.out")<3:
+    if findres==0:
         efinf.close()
         os.system("rm -f energy.out")
+        os.system("rm -r output.out")
         os.system("rm -rf data/$i")
         E=g(X,i)
-    else:
+    elif findres==1:
         E = float(efinf.readline())
+        os.system("rm -f energy.out")
+        os.system("rm -r output.out")
         efinf.close()
-
-    os.system("rm -f energy.out")
+    else:
+        E=-241615
+        os.system("rm -f energy.out")
+        os.system("rm -r output.out")
+        efinf.close()
 
     return E
 

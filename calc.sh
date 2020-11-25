@@ -1,6 +1,5 @@
 #!/bin/bash
 
-outfile="energy.out"
 
 rm -f geometry1.in
 mkdir calc_folder
@@ -16,8 +15,9 @@ srun aims.200821.scalapack.mpi.x &> output.out
 #cp ../testdata.out output.out
 
 E=($(grep 'Total energy correct' output.out  | awk '{ print  $6 }' |tail -n 1))
-echo $E > $outfile
-cp $outfile ../$outfile
+echo $E > energy.out
+cp output.out ../output.out
+cp energy.out ../energy.out
 cd ..
 
 mv calc_folder data/$i
