@@ -9,7 +9,13 @@ cp control.in calc_folder/control.in
 mv xyz.xyz calc_folder/xyz.xyz
 
 cd calc_folder
+
 ulimit -s unlimited
+
+export OMP_NUM_THREADS=1
+
+module load FHI-aims/latest-intel-2020.0
+
 #mpirun -n 12 aims | tee output.out
 srun aims.200821.scalapack.mpi.x &> output.out
 #cp ../testdata.out output.out
